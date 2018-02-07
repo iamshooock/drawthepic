@@ -322,7 +322,7 @@ def handle_message(event):
             original_content_url=url,
             preview_image_url=url
     if event.message.text == "抽帥哥":
-        client = ImgurClient(e8ff5e6896f2103, 8a066e98531d427e3295b05da7e688abd264ceb)
+        client = ImgurClient(e8ff5e6896f2103, 8a066e98531d427e3295b05da7e688abd264ceb9)
         images = client.get_album_images(u6UeH)
         index = random.randint(0, len(images) - 1)
         url = images[index].link
