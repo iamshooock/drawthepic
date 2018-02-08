@@ -23,6 +23,7 @@ handler = WebhookHandler(config['line_bot']['Channel_Secret'])
 client_id = config['imgur_api']['Client_ID']
 client_secret = config['imgur_api']['Client_Secret']
 album_id = config['imgur_api']['Album_ID']
+album_id2 = config['imgur_api']['Album_ID2']
 API_Get_Image = config['other_api']['API_Get_Image']
 
 
@@ -316,6 +317,18 @@ def handle_message(event):
     if event.message.text == "抽":
         client = ImgurClient(client_id, client_secret)
         images = client.get_album_images(album_id)
+        index = random.randint(0, len(images) - 1)
+        url = images[index].link
+        image_message = ImageSendMessage(
+            original_content_url=url,
+            preview_image_url=url
+        )
+        line_bot_api.reply_message(
+            event.reply_token, image_message)
+        return 0
+    if event.message.text == "抽帥哥":
+        client = ImgurClient(client_id, client_secret)
+        images = client.get_album_images(album_id2)
         index = random.randint(0, len(images) - 1)
         url = images[index].link
         image_message = ImageSendMessage(
