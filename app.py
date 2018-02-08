@@ -25,6 +25,7 @@ client_secret = config['imgur_api']['Client_Secret']
 album_id = config['imgur_api']['Album_ID']
 album_id2 = config['imgur_api']['Album_ID2']
 album_id3 = config['imgur_api']['Album_ID3']
+album_id4 = config['imgur_api']['Album_ID4']
 API_Get_Image = config['other_api']['API_Get_Image']
 
 
@@ -315,7 +316,7 @@ def handle_message(event):
             event.reply_token,
             TextSendMessage(text=content))
         return 0
-    if event.message.text == "抽":
+    if event.message.text == "抽, 召喚":
         client = ImgurClient(client_id, client_secret)
         images = client.get_album_images(album_id)
         index = random.randint(0, len(images) - 1)
@@ -330,6 +331,18 @@ def handle_message(event):
     if event.message.text == "抽帥哥":
         client = ImgurClient(client_id, client_secret)
         images = client.get_album_images(album_id2)
+        index = random.randint(0, len(images) - 1)
+        url = images[index].link
+        image_message = ImageSendMessage(
+            original_content_url=url,
+            preview_image_url=url
+        )
+        line_bot_api.reply_message(
+            event.reply_token, image_message)
+        return 0
+    if event.message.text == "抽正妹":
+        client = ImgurClient(client_id, client_secret)
+        images = client.get_album_images(album_id4)
         index = random.randint(0, len(images) - 1)
         url = images[index].link
         image_message = ImageSendMessage(
