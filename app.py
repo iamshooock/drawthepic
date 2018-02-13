@@ -316,7 +316,7 @@ def handle_message(event):
             event.reply_token,
             TextSendMessage(text=content))
         return 0
-    if event.message.text == "抽":
+    if event.message.text == "抽" or event.message.text == "柚" or event.message.text == "抽 " or event.message.text == " 抽" or event.message.text == "怞":
         client = ImgurClient(client_id, client_secret)
         images = client.get_album_images(album_id)
         index = random.randint(0, len(images) - 1)
@@ -328,7 +328,7 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token, image_message)
         return 0
-    if event.message.text == "抽帥哥":
+    if event.message.text == "抽帥哥" or event.message.text == "插":
         client = ImgurClient(client_id, client_secret)
         images = client.get_album_images(album_id2)
         index = random.randint(0, len(images) - 1)
@@ -352,7 +352,7 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token, image_message)
         return 0
-    if event.message.text == "今晚玩":
+    if event.message.text == "今晚玩" or event.message.text == "我要賣掉":
         client = ImgurClient(client_id, client_secret)
         images = client.get_album_images(album_id3)
         index = random.randint(0, len(images) - 1)
