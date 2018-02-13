@@ -26,6 +26,7 @@ album_id = config['imgur_api']['Album_ID']
 album_id2 = config['imgur_api']['Album_ID2']
 album_id3 = config['imgur_api']['Album_ID3']
 album_id4 = config['imgur_api']['Album_ID4']
+album_id5 = config['imgur_api']['Album_ID5']
 API_Get_Image = config['other_api']['API_Get_Image']
 
 
@@ -363,7 +364,19 @@ def handle_message(event):
         )
         line_bot_api.reply_message(
             event.reply_token, image_message)
-        return 0          
+        return 0
+    if event.message.text == "今夜戰犯" or event.message.text == "今夜MVP" or event.message.text == "今夜mvp":
+        client = ImgurClient(client_id, client_secret)
+        images = client.get_album_images(album_id5)
+        index = random.randint(0, len(images) - 1)
+        url = images[index].link
+        image_message = ImageSendMessage(
+            original_content_url=url,
+            preview_image_url=url
+        )
+        line_bot_api.reply_message(
+            event.reply_token, image_message)
+        return 0         
     if event.message.text == "隨便來張正妹圖片":
         image = requests.get(API_Get_Image)
         url = image.json().get('Url')
