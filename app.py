@@ -341,7 +341,7 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token, image_message)
         return 0
-    if event.message.text == "抽正妹":
+    if event.message.text == "抽正妹" or event.message.text == "領薪水":
         client = ImgurClient(client_id, client_secret)
         images = client.get_album_images(album_id4)
         index = random.randint(0, len(images) - 1)
