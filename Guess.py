@@ -1,30 +1,30 @@
 import random
-
-def game():
-    ai_number = random.randint(1, 10)
-    tries = 0
-    while tries < 3:
-        try:
-            guess_num = int(input('Make a guess of a number between 1-10. You have 3 chances. \n >>'))
-            tries = tries + 1
-        except:
-            ValueError(print('Numbers only,jerk.'))
-
-        else:
-            if guess_num == ai_number:
-                print('You got it!!!')
-                break
-            elif guess_num > ai_number:
-                print('Too High')
-                continue
-            elif guess_num < ai_number:
-                print('Too Low')
-                continue
+print "Welcome to guess the number\n==========================="
+print('Hello! What is your name?')
+myName = raw_input()
+print('Well, ' + myName + ', I am thinking of a number between 1 and 20, you have to guess what it is in as few attempts as possible.\n')
+n = random.randint(1, 20)
+attempts = 0
+guess = int(raw_input("Enter an integer from 1 to 20: "))
+while n != "guess" and attempts < 6:
+    
+    if guess < n:
+        print("Our guess range is between 1 and 20, please try a bit high")
+        guess = int(raw_input("Enter an integer from 1 to 20: "))
+	attempts += 1
+    elif guess > n:
+        print("Our guess range is between 1 and 20, please try a bit lower")
+        guess = int(raw_input("Enter an integer from 1 to 20: "))
+	attempts += 1
     else:
-        print("You didn't get it my number was {} ".format(ai_number))
-    play_again = input('Do you want to play again Y/n?')
-    if play_again.lower != 'n':
-        game()
+        print "!!***CONGRATULATIONS***!! you guessed it!"
+        break
+    
+if attempts == 6:
+    print("\nSorry you reached the maximum number of tries")
+    print("The secret number was ",n)
+else:
+    print("\nYou guessed it! The number was " ,n)
+    print("You guessed it in ", attempts,"attempts")	
 
-
-game()
+raw_input("\n\n Press the enter key to exit") 
