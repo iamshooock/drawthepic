@@ -1,31 +1,30 @@
-# This is a guess the number game.
 import random
 
-guessesTaken = 0
+def game():
+    ai_number = random.randint(1, 10)
+    tries = 0
+    while tries < 3:
+        try:
+            guess_num = int(input('Make a guess of a number between 1-10. You have 3 chances. \n >>'))
+            tries = tries + 1
+        except:
+            ValueError(print('Numbers only,jerk.'))
 
-number = random.randint(1, 1000)
-print('Well , I am thinking of a number between 1 and 1000.')
+        else:
+            if guess_num == ai_number:
+                print('You got it!!!')
+                break
+            elif guess_num > ai_number:
+                print('Too High')
+                continue
+            elif guess_num < ai_number:
+                print('Too Low')
+                continue
+    else:
+        print("You didn't get it my number was {} ".format(ai_number))
+    play_again = input('Do you want to play again Y/n?')
+    if play_again.lower != 'n':
+        game()
 
-while guessesTaken < 6:
-     print('Take a guess.') # There are four spaces in front of print.
-     guess = input()
-     guess = int(guess)
 
-     guessesTaken = guessesTaken + 1
-
-     if guess < number:
-         print('Your guess is too low.') # There are eight spaces in front of print.
-
-     if guess > number:
-         print('Your guess is too high.')
-
-     if guess == number:
-         break
-
-if guess == number:
-     guessesTaken = str(guessesTaken)
-     print('Good job! You guessed my number in ' + guessesTaken + ' guesses!')
-
-if guess != number:
-     number = str(number)
-     print('Nope. The number I was thinking of was ' + number)
+game()
