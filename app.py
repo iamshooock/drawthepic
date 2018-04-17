@@ -58,6 +58,39 @@ def pattern_mega(text):
         if re.search(pattern, text, re.IGNORECASE):
             return True
 
+        
+# This is a guess the number game.
+import random
+
+guessesTaken = 0
+
+number = random.randint(1, 1000)
+print('Well , I am thinking of a number between 1 and 1000.')
+
+while guessesTaken < 6:
+     print('Take a guess.') # There are four spaces in front of print.
+     guess = input()
+     guess = int(guess)
+
+     guessesTaken = guessesTaken + 1
+
+     if guess < number:
+         print('Your guess is too low.') # There are eight spaces in front of print.
+
+     if guess > number:
+         print('Your guess is too high.')
+
+     if guess == number:
+         break
+
+if guess == number:
+     guessesTaken = str(guessesTaken)
+     print('Good job! You guessed my number in ' + guessesTaken + ' guesses!')
+
+if guess != number:
+     number = str(number)
+     print('Nope. The number I was thinking of was ' + number)        
+        
 
 def eyny_movie():
     target_url = 'http://www.eyny.com/forum-205-1.html'
