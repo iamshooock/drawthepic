@@ -424,7 +424,7 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token, image_message)
         return 0         
-    if event.message.text == "領獎1":
+    if event.message.text == "領獎 ":
         image = requests.get(API_Get_Image)
         url = image.json().get('Url')
         image_message = ImageSendMessage(
