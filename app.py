@@ -397,6 +397,48 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token, image_message)
         return 0    
+    if event.message.text in ["抽選","draw"]:
+        
+        client = ImgurClient('e8ff5e6896f2103', '8a066e98531d427e3295b05da7e688abd264ceb9')
+        images = client.get_album_images('lkqyPcY')
+        index = random.randint(0, len(images) - 1)
+        urlgv = images[index].link
+        
+        image_message = ImageSendMessage(
+            original_content_url=url,
+            preview_image_url=url
+        )
+        line_bot_api.reply_message(
+            event.reply_token, image_message)
+        return 0        
+    if event.message.text in ["抽什麼","dw"]:
+        
+        client = ImgurClient('e8ff5e6896f2103', '8a066e98531d427e3295b05da7e688abd264ceb9')
+        images = client.get_album_images('YuuqDHY')
+        index = random.randint(0, len(images) - 1)
+        urlgv = images[index].link
+        
+        image_message = ImageSendMessage(
+            original_content_url=url,
+            preview_image_url=url
+        )
+        line_bot_api.reply_message(
+            event.reply_token, image_message)
+        return 0            
+    if event.message.text in ["次數","times"]:
+        
+        client = ImgurClient('e8ff5e6896f2103', '8a066e98531d427e3295b05da7e688abd264ceb9')
+        images = client.get_album_images('xgHpgKM')
+        index = random.randint(0, len(images) - 1)
+        urlgv = images[index].link
+        
+        image_message = ImageSendMessage(
+            original_content_url=url,
+            preview_image_url=url
+        )
+        line_bot_api.reply_message(
+            event.reply_token, image_message)
+        return 0              
     if event.message.text == "插":
         client = ImgurClient(client_id, client_secret)
         images = client.get_album_images(album_id2)
