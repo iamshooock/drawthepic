@@ -376,7 +376,28 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token, image_message)
         return 0
-    if event.message.text == "抽帥哥" or event.message.text == "領獎":
+    if event.message.text in ["抽帥哥","Cooper"]:
+        
+        client = ImgurClient('33ed33e765afedc', '04f0d5531b1d0978ff97fd990554c899e9e7e1f5')
+        images = client.get_album_images('9eQni')
+        index = random.randint(0, len(images) - 1)
+        urlgv = images[index].link
+        
+        client = ImgurClient('e8ff5e6896f2103', '8a066e98531d427e3295b05da7e688abd264ceb9')
+        images = client.get_album_images('k6AAK')
+        index = random.randint(0, len(images) - 1)
+        urlg = images[index].link
+
+        url = random.choice([urlg,urlgv,urlg,urlgv,urlg,urlgv])
+        
+        image_message = ImageSendMessage(
+            original_content_url=url,
+            preview_image_url=url
+        )
+        line_bot_api.reply_message(
+            event.reply_token, image_message)
+        return 0    
+    if event.message.text == "插":
         client = ImgurClient(client_id, client_secret)
         images = client.get_album_images(album_id2)
         index = random.randint(0, len(images) - 1)
@@ -424,7 +445,7 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token, image_message)
         return 0         
-    if event.message.text == "領獎 ":
+    if event.message.text == "領獎":
         image = requests.get(API_Get_Image)
         url = image.json().get('Url')
         image_message = ImageSendMessage(
