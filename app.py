@@ -27,6 +27,9 @@ album_id2 = config['imgur_api']['Album_ID2']
 album_id3 = config['imgur_api']['Album_ID3']
 album_id4 = config['imgur_api']['Album_ID4']
 album_id5 = config['imgur_api']['Album_ID5']
+album_id6 = config['imgur_api']['Album_ID6']
+album_id7 = config['imgur_api']['Album_ID7']
+album_id8 = config['imgur_api']['Album_ID8']
 API_Get_Image = config['other_api']['API_Get_Image']
 
 
@@ -397,48 +400,42 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token, image_message)
         return 0    
-    if event.message.text in ["抽選","draw"]:
-        
-        client = ImgurClient('e8ff5e6896f2103', '8a066e98531d427e3295b05da7e688abd264ceb9')
-        images = client.get_album_images('lkqyPcY')
+    if event.message.text == "抽選":
+        client = ImgurClient(client_id, client_secret)
+        images = client.get_album_images(album_id6)
         index = random.randint(0, len(images) - 1)
-        urlgv = images[index].link
-        
+        url = images[index].link
         image_message = ImageSendMessage(
             original_content_url=url,
             preview_image_url=url
         )
         line_bot_api.reply_message(
             event.reply_token, image_message)
-        return 0        
-    if event.message.text in ["抽什麼","dw"]:
-        
-        client = ImgurClient('e8ff5e6896f2103', '8a066e98531d427e3295b05da7e688abd264ceb9')
-        images = client.get_album_images('YuuqDHY')
+        return 0             
+    if event.message.text == "抽什麼":
+        client = ImgurClient(client_id, client_secret)
+        images = client.get_album_images(album_id7)
         index = random.randint(0, len(images) - 1)
-        urlgv = images[index].link
-        
+        url = images[index].link
         image_message = ImageSendMessage(
             original_content_url=url,
             preview_image_url=url
         )
         line_bot_api.reply_message(
             event.reply_token, image_message)
-        return 0            
-    if event.message.text in ["次數","times"]:
-        
-        client = ImgurClient('e8ff5e6896f2103', '8a066e98531d427e3295b05da7e688abd264ceb9')
-        images = client.get_album_images('xgHpgKM')
+        return 0         
+    if event.message.text == "抽幾次":
+        client = ImgurClient(client_id, client_secret)
+        images = client.get_album_images(album_id8)
         index = random.randint(0, len(images) - 1)
-        urlgv = images[index].link
-        
+        url = images[index].link
         image_message = ImageSendMessage(
             original_content_url=url,
             preview_image_url=url
         )
         line_bot_api.reply_message(
             event.reply_token, image_message)
-        return 0              
+        return 0             
     if event.message.text == "插":
         client = ImgurClient(client_id, client_secret)
         images = client.get_album_images(album_id2)
