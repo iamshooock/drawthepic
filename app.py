@@ -400,7 +400,7 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token, image_message)
         return 0    
-    if event.message.text == "抽選":
+    if event.message.text == "擲筊":
         client = ImgurClient(client_id, client_secret)
         images = client.get_album_images(album_id6)
         index = random.randint(0, len(images) - 1)
